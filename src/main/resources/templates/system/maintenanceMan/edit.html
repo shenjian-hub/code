@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${maintenanceMan.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">修理厂编号：</label>
+								<div class="col-sm-8">
+									<input id="fkShopId" name="fkShopId" th:value="${maintenanceMan.fkShopId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">姓名：</label>
+								<div class="col-sm-8">
+									<input id="realname" name="realname" th:value="${maintenanceMan.realname}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">工龄：</label>
+								<div class="col-sm-8">
+									<input id="workyear" name="workyear" th:value="${maintenanceMan.workyear}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">专业(钣金/喷漆/维修)：</label>
+								<div class="col-sm-8">
+									<input id="speciality" name="speciality" th:value="${maintenanceMan.speciality}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">状态 0 离职  1 在职  2 请假：</label>
+								<div class="col-sm-8">
+									<input id="status" name="status" th:value="${maintenanceMan.status}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">：</label>
+								<div class="col-sm-8">
+									<input id="createOn" name="createOn" th:value="${maintenanceMan.createOn}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">：</label>
+								<div class="col-sm-8">
+									<input id="updateOn" name="updateOn" th:value="${maintenanceMan.updateOn}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/maintenanceMan/edit.js">
+	</script>
+</body>
+</html>

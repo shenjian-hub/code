@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${workorder.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">修理厂编号：</label>
+								<div class="col-sm-8">
+									<input id="fkShopId" name="fkShopId" th:value="${workorder.fkShopId}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">工单编号：</label>
+								<div class="col-sm-8">
+									<input id="workNo" name="workNo" th:value="${workorder.workNo}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">车型照片：</label>
+								<div class="col-sm-8">
+									<input id="carPhoto" name="carPhoto" th:value="${workorder.carPhoto}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">接车时间：</label>
+								<div class="col-sm-8">
+									<input id="orderDate" name="orderDate" th:value="${workorder.orderDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">接车人：</label>
+								<div class="col-sm-8">
+									<input id="maintenanceMan" name="maintenanceMan" th:value="${workorder.maintenanceMan}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">车牌：</label>
+								<div class="col-sm-8">
+									<input id="carno" name="carno" th:value="${workorder.carno}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">车主电话：</label>
+								<div class="col-sm-8">
+									<input id="phoneno" name="phoneno" th:value="${workorder.phoneno}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">维修项目(存储JSON)：</label>
+								<div class="col-sm-8">
+									<input id="repairItem" name="repairItem" th:value="${workorder.repairItem}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">总价格：</label>
+								<div class="col-sm-8">
+									<input id="totalPrice" name="totalPrice" th:value="${workorder.totalPrice}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">减免价格：</label>
+								<div class="col-sm-8">
+									<input id="disPrice" name="disPrice" th:value="${workorder.disPrice}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">实付金额：</label>
+								<div class="col-sm-8">
+									<input id="amount" name="amount" th:value="${workorder.amount}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">状态 1.维护中  2  已完结  -1 已取消：</label>
+								<div class="col-sm-8">
+									<input id="status" name="status" th:value="${workorder.status}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">交车日期：</label>
+								<div class="col-sm-8">
+									<input id="finishDate" name="finishDate" th:value="${workorder.finishDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">：</label>
+								<div class="col-sm-8">
+									<input id="createOn" name="createOn" th:value="${workorder.createOn}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/workorder/edit.js">
+	</script>
+</body>
+</html>

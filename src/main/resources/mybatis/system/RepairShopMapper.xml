@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luban.system.dao.RepairShopDao">
+
+	<select id="get" resultType="com.luban.system.domain.RepairShopDO">
+		select `id`,`shop_name`,`pic_path`,`contact_person`,`phoneno`,`loginpwd`,`address`,`city_code`,`area_code`,`introduction`,`open_date`,`biz_person`,`longitude`,`latitude`,`create_by`,`create_on`,`update_on`,`update_by` from base_repair_shop where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.luban.system.domain.RepairShopDO">
+		select `id`,`shop_name`,`pic_path`,`contact_person`,`phoneno`,`loginpwd`,`address`,`city_code`,`area_code`,`introduction`,`open_date`,`biz_person`,`longitude`,`latitude`,`create_by`,`create_on`,`update_on`,`update_by` from base_repair_shop
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="shopName != null and shopName != ''"> and shop_name = #{shopName} </if>
+		  		  <if test="picPath != null and picPath != ''"> and pic_path = #{picPath} </if>
+		  		  <if test="contactPerson != null and contactPerson != ''"> and contact_person = #{contactPerson} </if>
+		  		  <if test="phoneno != null and phoneno != ''"> and phoneno = #{phoneno} </if>
+		  		  <if test="loginpwd != null and loginpwd != ''"> and loginpwd = #{loginpwd} </if>
+		  		  <if test="address != null and address != ''"> and address = #{address} </if>
+		  		  <if test="cityCode != null and cityCode != ''"> and city_code = #{cityCode} </if>
+		  		  <if test="areaCode != null and areaCode != ''"> and area_code = #{areaCode} </if>
+		  		  <if test="introduction != null and introduction != ''"> and introduction = #{introduction} </if>
+		  		  <if test="openDate != null and openDate != ''"> and open_date = #{openDate} </if>
+		  		  <if test="bizPerson != null and bizPerson != ''"> and biz_person = #{bizPerson} </if>
+		  		  <if test="longitude != null and longitude != ''"> and longitude = #{longitude} </if>
+		  		  <if test="latitude != null and latitude != ''"> and latitude = #{latitude} </if>
+		  		  <if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
+		  		  <if test="createOn != null and createOn != ''"> and create_on = #{createOn} </if>
+		  		  <if test="updateOn != null and updateOn != ''"> and update_on = #{updateOn} </if>
+		  		  <if test="updateBy != null and updateBy != ''"> and update_by = #{updateBy} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from base_repair_shop
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="shopName != null and shopName != ''"> and shop_name = #{shopName} </if>
+		  		  <if test="picPath != null and picPath != ''"> and pic_path = #{picPath} </if>
+		  		  <if test="contactPerson != null and contactPerson != ''"> and contact_person = #{contactPerson} </if>
+		  		  <if test="phoneno != null and phoneno != ''"> and phoneno = #{phoneno} </if>
+		  		  <if test="loginpwd != null and loginpwd != ''"> and loginpwd = #{loginpwd} </if>
+		  		  <if test="address != null and address != ''"> and address = #{address} </if>
+		  		  <if test="cityCode != null and cityCode != ''"> and city_code = #{cityCode} </if>
+		  		  <if test="areaCode != null and areaCode != ''"> and area_code = #{areaCode} </if>
+		  		  <if test="introduction != null and introduction != ''"> and introduction = #{introduction} </if>
+		  		  <if test="openDate != null and openDate != ''"> and open_date = #{openDate} </if>
+		  		  <if test="bizPerson != null and bizPerson != ''"> and biz_person = #{bizPerson} </if>
+		  		  <if test="longitude != null and longitude != ''"> and longitude = #{longitude} </if>
+		  		  <if test="latitude != null and latitude != ''"> and latitude = #{latitude} </if>
+		  		  <if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
+		  		  <if test="createOn != null and createOn != ''"> and create_on = #{createOn} </if>
+		  		  <if test="updateOn != null and updateOn != ''"> and update_on = #{updateOn} </if>
+		  		  <if test="updateBy != null and updateBy != ''"> and update_by = #{updateBy} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.luban.system.domain.RepairShopDO">
+		insert into base_repair_shop
+		(
+			`id`, 
+			`shop_name`, 
+			`pic_path`, 
+			`contact_person`, 
+			`phoneno`, 
+			`loginpwd`, 
+			`address`, 
+			`city_code`, 
+			`area_code`, 
+			`introduction`, 
+			`open_date`, 
+			`biz_person`, 
+			`longitude`, 
+			`latitude`, 
+			`create_by`, 
+			`create_on`, 
+			`update_on`, 
+			`update_by`
+		)
+		values
+		(
+			#{id}, 
+			#{shopName}, 
+			#{picPath}, 
+			#{contactPerson}, 
+			#{phoneno}, 
+			#{loginpwd}, 
+			#{address}, 
+			#{cityCode}, 
+			#{areaCode}, 
+			#{introduction}, 
+			#{openDate}, 
+			#{bizPerson}, 
+			#{longitude}, 
+			#{latitude}, 
+			#{createBy}, 
+			#{createOn}, 
+			#{updateOn}, 
+			#{updateBy}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.luban.system.domain.RepairShopDO">
+		update base_repair_shop 
+		<set>
+			<if test="shopName != null">`shop_name` = #{shopName}, </if>
+			<if test="picPath != null">`pic_path` = #{picPath}, </if>
+			<if test="contactPerson != null">`contact_person` = #{contactPerson}, </if>
+			<if test="phoneno != null">`phoneno` = #{phoneno}, </if>
+			<if test="loginpwd != null">`loginpwd` = #{loginpwd}, </if>
+			<if test="address != null">`address` = #{address}, </if>
+			<if test="cityCode != null">`city_code` = #{cityCode}, </if>
+			<if test="areaCode != null">`area_code` = #{areaCode}, </if>
+			<if test="introduction != null">`introduction` = #{introduction}, </if>
+			<if test="openDate != null">`open_date` = #{openDate}, </if>
+			<if test="bizPerson != null">`biz_person` = #{bizPerson}, </if>
+			<if test="longitude != null">`longitude` = #{longitude}, </if>
+			<if test="latitude != null">`latitude` = #{latitude}, </if>
+			<if test="createBy != null">`create_by` = #{createBy}, </if>
+			<if test="createOn != null">`create_on` = #{createOn}, </if>
+			<if test="updateOn != null">`update_on` = #{updateOn}, </if>
+			<if test="updateBy != null">`update_by` = #{updateBy}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from base_repair_shop where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from base_repair_shop where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

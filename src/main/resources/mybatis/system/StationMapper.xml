@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luban.system.dao.StationDao">
+
+	<select id="get" resultType="com.luban.system.domain.StationDO">
+		select `ID`,`full_name`,`short_name`,`city_code`,`area_code`,`address`,`tel`,`phoneno`,`longitude`,`latitude`,`logopath`,`status`,`car_settle_price`,`car_market_price`,`seven_car_price`,`expire_time`,`create_by`,`create_on`,`update_by`,`update_on` from base_station where ID = #{value}
+	</select>
+
+	<select id="list" resultType="com.luban.system.domain.StationDO">
+		select `ID`,`full_name`,`short_name`,`city_code`,`area_code`,`address`,`tel`,`phoneno`,`longitude`,`latitude`,`logopath`,`status`,`car_settle_price`,`car_market_price`,`seven_car_price`,`expire_time`,`create_by`,`create_on`,`update_by`,`update_on` from base_station
+        <where>  
+		  		  <if test="id != null and id != ''"> and ID = #{id} </if>
+		  		  <if test="fullName != null and fullName != ''"> and full_name = #{fullName} </if>
+		  		  <if test="shortName != null and shortName != ''"> and short_name = #{shortName} </if>
+		  		  <if test="cityCode != null and cityCode != ''"> and city_code = #{cityCode} </if>
+		  		  <if test="areaCode != null and areaCode != ''"> and area_code = #{areaCode} </if>
+		  		  <if test="address != null and address != ''"> and address = #{address} </if>
+		  		  <if test="tel != null and tel != ''"> and tel = #{tel} </if>
+		  		  <if test="phoneno != null and phoneno != ''"> and phoneno = #{phoneno} </if>
+		  		  <if test="longitude != null and longitude != ''"> and longitude = #{longitude} </if>
+		  		  <if test="latitude != null and latitude != ''"> and latitude = #{latitude} </if>
+		  		  <if test="logopath != null and logopath != ''"> and logopath = #{logopath} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="carSettlePrice != null and carSettlePrice != ''"> and car_settle_price = #{carSettlePrice} </if>
+		  		  <if test="carMarketPrice != null and carMarketPrice != ''"> and car_market_price = #{carMarketPrice} </if>
+		  		  <if test="sevenCarPrice != null and sevenCarPrice != ''"> and seven_car_price = #{sevenCarPrice} </if>
+		  		  <if test="expireTime != null and expireTime != ''"> and expire_time = #{expireTime} </if>
+		  		  <if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
+		  		  <if test="createOn != null and createOn != ''"> and create_on = #{createOn} </if>
+		  		  <if test="updateBy != null and updateBy != ''"> and update_by = #{updateBy} </if>
+		  		  <if test="updateOn != null and updateOn != ''"> and update_on = #{updateOn} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by ID desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from base_station
+		 <where>  
+		  		  <if test="id != null and id != ''"> and ID = #{id} </if>
+		  		  <if test="fullName != null and fullName != ''"> and full_name = #{fullName} </if>
+		  		  <if test="shortName != null and shortName != ''"> and short_name = #{shortName} </if>
+		  		  <if test="cityCode != null and cityCode != ''"> and city_code = #{cityCode} </if>
+		  		  <if test="areaCode != null and areaCode != ''"> and area_code = #{areaCode} </if>
+		  		  <if test="address != null and address != ''"> and address = #{address} </if>
+		  		  <if test="tel != null and tel != ''"> and tel = #{tel} </if>
+		  		  <if test="phoneno != null and phoneno != ''"> and phoneno = #{phoneno} </if>
+		  		  <if test="longitude != null and longitude != ''"> and longitude = #{longitude} </if>
+		  		  <if test="latitude != null and latitude != ''"> and latitude = #{latitude} </if>
+		  		  <if test="logopath != null and logopath != ''"> and logopath = #{logopath} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="carSettlePrice != null and carSettlePrice != ''"> and car_settle_price = #{carSettlePrice} </if>
+		  		  <if test="carMarketPrice != null and carMarketPrice != ''"> and car_market_price = #{carMarketPrice} </if>
+		  		  <if test="sevenCarPrice != null and sevenCarPrice != ''"> and seven_car_price = #{sevenCarPrice} </if>
+		  		  <if test="expireTime != null and expireTime != ''"> and expire_time = #{expireTime} </if>
+		  		  <if test="createBy != null and createBy != ''"> and create_by = #{createBy} </if>
+		  		  <if test="createOn != null and createOn != ''"> and create_on = #{createOn} </if>
+		  		  <if test="updateBy != null and updateBy != ''"> and update_by = #{updateBy} </if>
+		  		  <if test="updateOn != null and updateOn != ''"> and update_on = #{updateOn} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.luban.system.domain.StationDO">
+		insert into base_station
+		(
+			`ID`, 
+			`full_name`, 
+			`short_name`, 
+			`city_code`, 
+			`area_code`, 
+			`address`, 
+			`tel`, 
+			`phoneno`, 
+			`longitude`, 
+			`latitude`, 
+			`logopath`, 
+			`status`, 
+			`car_settle_price`, 
+			`car_market_price`, 
+			`seven_car_price`, 
+			`expire_time`, 
+			`create_by`, 
+			`create_on`, 
+			`update_by`, 
+			`update_on`
+		)
+		values
+		(
+			#{id}, 
+			#{fullName}, 
+			#{shortName}, 
+			#{cityCode}, 
+			#{areaCode}, 
+			#{address}, 
+			#{tel}, 
+			#{phoneno}, 
+			#{longitude}, 
+			#{latitude}, 
+			#{logopath}, 
+			#{status}, 
+			#{carSettlePrice}, 
+			#{carMarketPrice}, 
+			#{sevenCarPrice}, 
+			#{expireTime}, 
+			#{createBy}, 
+			#{createOn}, 
+			#{updateBy}, 
+			#{updateOn}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.luban.system.domain.StationDO">
+		update base_station 
+		<set>
+			<if test="fullName != null">`full_name` = #{fullName}, </if>
+			<if test="shortName != null">`short_name` = #{shortName}, </if>
+			<if test="cityCode != null">`city_code` = #{cityCode}, </if>
+			<if test="areaCode != null">`area_code` = #{areaCode}, </if>
+			<if test="address != null">`address` = #{address}, </if>
+			<if test="tel != null">`tel` = #{tel}, </if>
+			<if test="phoneno != null">`phoneno` = #{phoneno}, </if>
+			<if test="longitude != null">`longitude` = #{longitude}, </if>
+			<if test="latitude != null">`latitude` = #{latitude}, </if>
+			<if test="logopath != null">`logopath` = #{logopath}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="carSettlePrice != null">`car_settle_price` = #{carSettlePrice}, </if>
+			<if test="carMarketPrice != null">`car_market_price` = #{carMarketPrice}, </if>
+			<if test="sevenCarPrice != null">`seven_car_price` = #{sevenCarPrice}, </if>
+			<if test="expireTime != null">`expire_time` = #{expireTime}, </if>
+			<if test="createBy != null">`create_by` = #{createBy}, </if>
+			<if test="createOn != null">`create_on` = #{createOn}, </if>
+			<if test="updateBy != null">`update_by` = #{updateBy}, </if>
+			<if test="updateOn != null">`update_on` = #{updateOn}</if>
+		</set>
+		where ID = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from base_station where ID = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from base_station where ID in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

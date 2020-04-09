@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+	<div class="wrapper wrapper-content ">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="ibox float-e-margins">
+					<div class="ibox-content">
+						<form class="form-horizontal m-t" id="signupForm">
+						<input id="id" name="id" th:value="${repairShop.id}"  type="hidden">
+							<div class="form-group">	
+								<label class="col-sm-3 control-label">修理厂名称：</label>
+								<div class="col-sm-8">
+									<input id="shopName" name="shopName" th:value="${repairShop.shopName}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">修理厂正面照片：</label>
+								<div class="col-sm-8">
+									<input id="picPath" name="picPath" th:value="${repairShop.picPath}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系人：</label>
+								<div class="col-sm-8">
+									<input id="contactPerson" name="contactPerson" th:value="${repairShop.contactPerson}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">联系电话：</label>
+								<div class="col-sm-8">
+									<input id="phoneno" name="phoneno" th:value="${repairShop.phoneno}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">登录密码：</label>
+								<div class="col-sm-8">
+									<input id="loginpwd" name="loginpwd" th:value="${repairShop.loginpwd}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">地址：</label>
+								<div class="col-sm-8">
+									<input id="address" name="address" th:value="${repairShop.address}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">城市编码：</label>
+								<div class="col-sm-8">
+									<input id="cityCode" name="cityCode" th:value="${repairShop.cityCode}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">区县编码：</label>
+								<div class="col-sm-8">
+									<input id="areaCode" name="areaCode" th:value="${repairShop.areaCode}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">简介：</label>
+								<div class="col-sm-8">
+									<input id="introduction" name="introduction" th:value="${repairShop.introduction}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">开通日期：</label>
+								<div class="col-sm-8">
+									<input id="openDate" name="openDate" th:value="${repairShop.openDate}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">业务员：</label>
+								<div class="col-sm-8">
+									<input id="bizPerson" name="bizPerson" th:value="${repairShop.bizPerson}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">经度：</label>
+								<div class="col-sm-8">
+									<input id="longitude" name="longitude" th:value="${repairShop.longitude}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">纬度：</label>
+								<div class="col-sm-8">
+									<input id="latitude" name="latitude" th:value="${repairShop.latitude}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建人：</label>
+								<div class="col-sm-8">
+									<input id="createBy" name="createBy" th:value="${repairShop.createBy}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">创建时间：</label>
+								<div class="col-sm-8">
+									<input id="createOn" name="createOn" th:value="${repairShop.createOn}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">更新时间：</label>
+								<div class="col-sm-8">
+									<input id="updateOn" name="updateOn" th:value="${repairShop.updateOn}" class="form-control" type="text">
+								</div>
+							</div>
+														<div class="form-group">	
+								<label class="col-sm-3 control-label">更新人：</label>
+								<div class="col-sm-8">
+									<input id="updateBy" name="updateBy" th:value="${repairShop.updateBy}" class="form-control" type="text">
+								</div>
+							</div>
+																					<div class="form-group">
+								<div class="col-sm-8 col-sm-offset-3">
+									<button type="submit" class="btn btn-primary">提交</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+	</div>
+	</div>
+	<div th:include="include::footer"></div>
+	<script type="text/javascript" src="/js/appjs/system/repairShop/edit.js">
+	</script>
+</body>
+</html>

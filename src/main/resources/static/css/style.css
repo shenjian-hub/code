@@ -386,7 +386,7 @@ body.mini-navbar .navbar-default .nav>li>.nav-second-level li a {
 }
 
 .navbar-fixed-top, .navbar-static-top {
-    background: #369;
+    background: #1e4499;
 }
 
 .fixed-nav #wrapper {
@@ -1594,6 +1594,8 @@ table.dataTable thead .sorting:after {
 /* CIRCLE */
 .img-circle {
     border-radius: 50%;
+    position: relative;
+    bottom: 2px;
 }
 
 .btn-circle {
@@ -3642,13 +3644,14 @@ code {
     -moz-border-left-colors: none;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
-    background-color: #ffffff;
-    border-color: #e7eaec;
+   /* background-color: #ffffff;
+    border-color: #e7eaec;*/
     -webkit-border-image: none;
     -o-border-image: none;
     border-image: none;
-    border-style: solid solid none;
-    border-width: 4px 0px 0;
+    /*border-style: none;*/
+    border-top: solid #e6e6e6 1px;
+    /*border-width: 4px 0px 0;*/
     color: inherit;
     margin-bottom: 0;
     padding: 14px 15px 7px;
@@ -3656,15 +3659,15 @@ code {
 }
 
 .ibox-content {
-    background-color: #ffffff;
+    background-color: #fff;
     color: inherit;
     padding: 15px 20px 20px 20px;
-    border-color: #e7eaec;
+    border-color: #fff;
     -webkit-border-image: none;
     -o-border-image: none;
     border-image: none;
-    border-style: solid solid none;
-    border-width: 1px 0px;
+    /*border-style: solid solid none;*/
+    /*border-width: 0px 0px;*/
 }
 
 table.table-mail tr td {
@@ -3754,7 +3757,7 @@ table.table-mail tr td {
 }
 /* BACKGROUNDS */
 .gray-bg {
-    background-color: #f3f3f4;
+    background-color: #fff;
 }
 
 .white-bg {
@@ -6760,7 +6763,7 @@ body.skin-1 {
 }
 
 .skin-1 .ibox-title, .skin-1 .ibox-content {
-    border-width: 1px;
+    border-width: 0;
 }
 
 .skin-1 .ibox-content:last-child {

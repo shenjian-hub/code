@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luban.system.dao.StationShopDao">
+
+	<select id="get" resultType="com.luban.system.domain.StationShopDO">
+		select `fk_shop_id`,`fk_station_id`,`driver_cost` from base_station_shop where fk_shop_id = #{value}
+	</select>
+
+	<select id="list" resultType="com.luban.system.domain.StationShopDO">
+		select `fk_shop_id`,`fk_station_id`,`driver_cost` from base_station_shop
+        <where>  
+		  		  <if test="fkShopId != null and fkShopId != ''"> and fk_shop_id = #{fkShopId} </if>
+		  		  <if test="fkStationId != null and fkStationId != ''"> and fk_station_id = #{fkStationId} </if>
+		  		  <if test="driverCost != null and driverCost != ''"> and driver_cost = #{driverCost} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by fk_shop_id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from base_station_shop
+		 <where>  
+		  		  <if test="fkShopId != null and fkShopId != ''"> and fk_shop_id = #{fkShopId} </if>
+		  		  <if test="fkStationId != null and fkStationId != ''"> and fk_station_id = #{fkStationId} </if>
+		  		  <if test="driverCost != null and driverCost != ''"> and driver_cost = #{driverCost} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.luban.system.domain.StationShopDO">
+		insert into base_station_shop
+		(
+			`fk_shop_id`, 
+			`fk_station_id`, 
+			`driver_cost`
+		)
+		values
+		(
+			#{fkShopId}, 
+			#{fkStationId}, 
+			#{driverCost}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.luban.system.domain.StationShopDO">
+		update base_station_shop 
+		<set>
+			<if test="fkStationId != null">`fk_station_id` = #{fkStationId}, </if>
+			<if test="driverCost != null">`driver_cost` = #{driverCost}</if>
+		</set>
+		where fk_shop_id = #{fkShopId}
+	</update>
+	
+	<delete id="remove">
+		delete from base_station_shop where fk_shop_id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from base_station_shop where fk_shop_id in 
+		<foreach item="fkShopId" collection="array" open="(" separator="," close=")">
+			#{fkShopId}
+		</foreach>
+	</delete>
+
+</mapper>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luban.system.dao.WorkorderDao">
+
+	<select id="get" resultType="com.luban.system.domain.WorkorderDO">
+		select `id`,`fk_shop_id`,`work_no`,`car_photo`,`order_date`,`maintenance_man`,`carno`,`phoneno`,`repair_item`,`total_price`,`dis_price`,`amount`,`status`,`finish_date`,`create_on` from lb_workorder where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.luban.system.domain.WorkorderDO">
+		select `id`,`fk_shop_id`,`work_no`,`car_photo`,`order_date`,`maintenance_man`,`carno`,`phoneno`,`repair_item`,`total_price`,`dis_price`,`amount`,`status`,`finish_date`,`create_on` from lb_workorder
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="fkShopId != null and fkShopId != ''"> and fk_shop_id = #{fkShopId} </if>
+		  		  <if test="workNo != null and workNo != ''"> and work_no = #{workNo} </if>
+		  		  <if test="carPhoto != null and carPhoto != ''"> and car_photo = #{carPhoto} </if>
+		  		  <if test="orderDate != null and orderDate != ''"> and order_date = #{orderDate} </if>
+		  		  <if test="maintenanceMan != null and maintenanceMan != ''"> and maintenance_man = #{maintenanceMan} </if>
+		  		  <if test="carno != null and carno != ''"> and carno = #{carno} </if>
+		  		  <if test="phoneno != null and phoneno != ''"> and phoneno = #{phoneno} </if>
+		  		  <if test="repairItem != null and repairItem != ''"> and repair_item = #{repairItem} </if>
+		  		  <if test="totalPrice != null and totalPrice != ''"> and total_price = #{totalPrice} </if>
+		  		  <if test="disPrice != null and disPrice != ''"> and dis_price = #{disPrice} </if>
+		  		  <if test="amount != null and amount != ''"> and amount = #{amount} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="finishDate != null and finishDate != ''"> and finish_date = #{finishDate} </if>
+		  		  <if test="createOn != null and createOn != ''"> and create_on = #{createOn} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from lb_workorder
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="fkShopId != null and fkShopId != ''"> and fk_shop_id = #{fkShopId} </if>
+		  		  <if test="workNo != null and workNo != ''"> and work_no = #{workNo} </if>
+		  		  <if test="carPhoto != null and carPhoto != ''"> and car_photo = #{carPhoto} </if>
+		  		  <if test="orderDate != null and orderDate != ''"> and order_date = #{orderDate} </if>
+		  		  <if test="maintenanceMan != null and maintenanceMan != ''"> and maintenance_man = #{maintenanceMan} </if>
+		  		  <if test="carno != null and carno != ''"> and carno = #{carno} </if>
+		  		  <if test="phoneno != null and phoneno != ''"> and phoneno = #{phoneno} </if>
+		  		  <if test="repairItem != null and repairItem != ''"> and repair_item = #{repairItem} </if>
+		  		  <if test="totalPrice != null and totalPrice != ''"> and total_price = #{totalPrice} </if>
+		  		  <if test="disPrice != null and disPrice != ''"> and dis_price = #{disPrice} </if>
+		  		  <if test="amount != null and amount != ''"> and amount = #{amount} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="finishDate != null and finishDate != ''"> and finish_date = #{finishDate} </if>
+		  		  <if test="createOn != null and createOn != ''"> and create_on = #{createOn} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.luban.system.domain.WorkorderDO">
+		insert into lb_workorder
+		(
+			`id`, 
+			`fk_shop_id`, 
+			`work_no`, 
+			`car_photo`, 
+			`order_date`, 
+			`maintenance_man`, 
+			`carno`, 
+			`phoneno`, 
+			`repair_item`, 
+			`total_price`, 
+			`dis_price`, 
+			`amount`, 
+			`status`, 
+			`finish_date`, 
+			`create_on`
+		)
+		values
+		(
+			#{id}, 
+			#{fkShopId}, 
+			#{workNo}, 
+			#{carPhoto}, 
+			#{orderDate}, 
+			#{maintenanceMan}, 
+			#{carno}, 
+			#{phoneno}, 
+			#{repairItem}, 
+			#{totalPrice}, 
+			#{disPrice}, 
+			#{amount}, 
+			#{status}, 
+			#{finishDate}, 
+			#{createOn}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.luban.system.domain.WorkorderDO">
+		update lb_workorder 
+		<set>
+			<if test="fkShopId != null">`fk_shop_id` = #{fkShopId}, </if>
+			<if test="workNo != null">`work_no` = #{workNo}, </if>
+			<if test="carPhoto != null">`car_photo` = #{carPhoto}, </if>
+			<if test="orderDate != null">`order_date` = #{orderDate}, </if>
+			<if test="maintenanceMan != null">`maintenance_man` = #{maintenanceMan}, </if>
+			<if test="carno != null">`carno` = #{carno}, </if>
+			<if test="phoneno != null">`phoneno` = #{phoneno}, </if>
+			<if test="repairItem != null">`repair_item` = #{repairItem}, </if>
+			<if test="totalPrice != null">`total_price` = #{totalPrice}, </if>
+			<if test="disPrice != null">`dis_price` = #{disPrice}, </if>
+			<if test="amount != null">`amount` = #{amount}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="finishDate != null">`finish_date` = #{finishDate}, </if>
+			<if test="createOn != null">`create_on` = #{createOn}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from lb_workorder where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from lb_workorder where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

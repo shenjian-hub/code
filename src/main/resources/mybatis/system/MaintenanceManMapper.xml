@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luban.system.dao.MaintenanceManDao">
+
+	<select id="get" resultType="com.luban.system.domain.MaintenanceManDO">
+		select `id`,`fk_shop_id`,`realname`,`workyear`,`speciality`,`status`,`create_on`,`update_on` from lb_maintenance_man where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.luban.system.domain.MaintenanceManDO">
+		select `id`,`fk_shop_id`,`realname`,`workyear`,`speciality`,`status`,`create_on`,`update_on` from lb_maintenance_man
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="fkShopId != null and fkShopId != ''"> and fk_shop_id = #{fkShopId} </if>
+		  		  <if test="realname != null and realname != ''"> and realname = #{realname} </if>
+		  		  <if test="workyear != null and workyear != ''"> and workyear = #{workyear} </if>
+		  		  <if test="speciality != null and speciality != ''"> and speciality = #{speciality} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="createOn != null and createOn != ''"> and create_on = #{createOn} </if>
+		  		  <if test="updateOn != null and updateOn != ''"> and update_on = #{updateOn} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from lb_maintenance_man
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="fkShopId != null and fkShopId != ''"> and fk_shop_id = #{fkShopId} </if>
+		  		  <if test="realname != null and realname != ''"> and realname = #{realname} </if>
+		  		  <if test="workyear != null and workyear != ''"> and workyear = #{workyear} </if>
+		  		  <if test="speciality != null and speciality != ''"> and speciality = #{speciality} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="createOn != null and createOn != ''"> and create_on = #{createOn} </if>
+		  		  <if test="updateOn != null and updateOn != ''"> and update_on = #{updateOn} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.luban.system.domain.MaintenanceManDO">
+		insert into lb_maintenance_man
+		(
+			`id`, 
+			`fk_shop_id`, 
+			`realname`, 
+			`workyear`, 
+			`speciality`, 
+			`status`, 
+			`create_on`, 
+			`update_on`
+		)
+		values
+		(
+			#{id}, 
+			#{fkShopId}, 
+			#{realname}, 
+			#{workyear}, 
+			#{speciality}, 
+			#{status}, 
+			#{createOn}, 
+			#{updateOn}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.luban.system.domain.MaintenanceManDO">
+		update lb_maintenance_man 
+		<set>
+			<if test="fkShopId != null">`fk_shop_id` = #{fkShopId}, </if>
+			<if test="realname != null">`realname` = #{realname}, </if>
+			<if test="workyear != null">`workyear` = #{workyear}, </if>
+			<if test="speciality != null">`speciality` = #{speciality}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="createOn != null">`create_on` = #{createOn}, </if>
+			<if test="updateOn != null">`update_on` = #{updateOn}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from lb_maintenance_man where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from lb_maintenance_man where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

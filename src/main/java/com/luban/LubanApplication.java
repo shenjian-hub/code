@@ -18,10 +18,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class LubanApplication {
     public static void main(String[] args) {
         SpringApplication.run(LubanApplication.class, args);
-        System.out.println("ヾ(◍°∇°◍)ﾉﾞ    Luban启动成功      ヾ(◍°∇°◍)ﾉﾞ\n" +
-               " _        __\n" +
-                "/    / _   /_|  _/  /__)_   _ '_\n" +
-        "(__(/()(//)(  |(//()/ ( (-/)(///\n" +
-          "      /          ");
+        System.out.println("ヾ(◍°∇°◍)ﾉﾞ    LubanBoot启动成功      ヾ(◍°∇°◍)ﾉﾞ\n");
     }
 }

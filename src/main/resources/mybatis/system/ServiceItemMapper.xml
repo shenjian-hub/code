@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.luban.system.dao.ServiceItemDao">
+
+	<select id="get" resultType="com.luban.system.domain.ServiceItemDO">
+		select `id`,`fk_shop_id`,`fk_project_id`,`item_name`,`item_price`,`diy_price` from lb_service_item where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.luban.system.domain.ServiceItemDO">
+		select `id`,`fk_shop_id`,`fk_project_id`,`item_name`,`item_price`,`diy_price` from lb_service_item
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="fkShopId != null and fkShopId != ''"> and fk_shop_id = #{fkShopId} </if>
+		  		  <if test="fkProjectId != null and fkProjectId != ''"> and fk_project_id = #{fkProjectId} </if>
+		  		  <if test="itemName != null and itemName != ''"> and item_name = #{itemName} </if>
+		  		  <if test="itemPrice != null and itemPrice != ''"> and item_price = #{itemPrice} </if>
+		  		  <if test="diyPrice != null and diyPrice != ''"> and diy_price = #{diyPrice} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from lb_service_item
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="fkShopId != null and fkShopId != ''"> and fk_shop_id = #{fkShopId} </if>
+		  		  <if test="fkProjectId != null and fkProjectId != ''"> and fk_project_id = #{fkProjectId} </if>
+		  		  <if test="itemName != null and itemName != ''"> and item_name = #{itemName} </if>
+		  		  <if test="itemPrice != null and itemPrice != ''"> and item_price = #{itemPrice} </if>
+		  		  <if test="diyPrice != null and diyPrice != ''"> and diy_price = #{diyPrice} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.luban.system.domain.ServiceItemDO">
+		insert into lb_service_item
+		(
+			`id`, 
+			`fk_shop_id`, 
+			`fk_project_id`, 
+			`item_name`, 
+			`item_price`, 
+			`diy_price`
+		)
+		values
+		(
+			#{id}, 
+			#{fkShopId}, 
+			#{fkProjectId}, 
+			#{itemName}, 
+			#{itemPrice}, 
+			#{diyPrice}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.luban.system.domain.ServiceItemDO">
+		update lb_service_item 
+		<set>
+			<if test="fkShopId != null">`fk_shop_id` = #{fkShopId}, </if>
+			<if test="fkProjectId != null">`fk_project_id` = #{fkProjectId}, </if>
+			<if test="itemName != null">`item_name` = #{itemName}, </if>
+			<if test="itemPrice != null">`item_price` = #{itemPrice}, </if>
+			<if test="diyPrice != null">`diy_price` = #{diyPrice}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from lb_service_item where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from lb_service_item where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
